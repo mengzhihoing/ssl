@@ -5,9 +5,14 @@ chmod a+x certbot-auto
 ./certbot-auto
 </pre>
 
-或者   (hkvps.cf是你的域名)
+若自动安装失败，执行以下命令   (hkvps.cf是你的域名)
 <pre>
 ./certbot-auto certonly -a standalone -d hkvps.cf -d www.hkvps.cf
+</pre>
+
+可以添加定时任务自动更新证书
+<pre>
+./certbot-auto renew
 </pre>
 
 证书目录 
@@ -56,4 +61,15 @@ ssl_session_cache shared:SSL:10m;
 
         access_log  /home/wwwlogs/www.hkvps.cf.log;
     }
+</pre>
+基本上只修改两个地方
+<pre>
+listen 443 ssl;
+
+   ssl_certificate /etc/letsencrypt/live/shenfu.ml/fullchain.pem;
+ssl_certificate_key /etc/letsencrypt/live/shenfu.ml/privkey.pem;
+ssl_ciphers "EECDH+CHACHA20:EECDH+CHACHA20-draft:EECDH+AES128:RSA+AES128:EECDH+AES256:RSA+AES256:EECDH+3DES:RSA+3DES:!MD5";
+ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+ssl_prefer_server_ciphers on;
+ssl_session_cache shared:SSL:10m;
 </pre>
