@@ -1,5 +1,4 @@
-# ssl 
-
+# ssl 免费https加密证书 letsencrypt 
 <pre>
 wget https://dl.eff.org/certbot-auto
 chmod a+x certbot-auto
@@ -21,7 +20,7 @@ chmod a+x certbot-auto
 vi /usr/local/nginx/conf/vhost/域名.conf
 </pre>
 
-粘贴以下内容
+粘贴以下内容 修改域名和监听端口
 <pre>
 server
     {
